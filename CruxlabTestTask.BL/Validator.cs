@@ -8,7 +8,7 @@
         /// <summary>
         /// Determines if the password is valid.
         /// </summary>
-        /// <param name="passwordString">Password data string.</param>
+        /// <param name="passwordDataString">Password data string.</param>
         /// <returns>Result.</returns>
         private bool IsValid(PasswordDataString passwordDataString)
         {
