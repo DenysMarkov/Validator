@@ -27,7 +27,7 @@ namespace CruxlabTestTask.Tests
             int actualCount = validator.ValidPasswordsCount(passwordStrings);
 
             // Assert
-            Assert.AreEqual(expectedCount, actualCount);
+            Assert.That(actualCount, Is.EqualTo(expectedCount));
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace CruxlabTestTask.Tests
             int actualCount = validator.ValidPasswordsCount(passwordStrings);
 
             // Assert
-            Assert.AreEqual(expectedCount, actualCount);
+            Assert.That(actualCount, Is.EqualTo(expectedCount));
         }
     }
 }
