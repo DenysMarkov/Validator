@@ -16,15 +16,27 @@ namespace CruxlabTestTask.Tests
         public void ValidPasswordsCountTest_ValidPasswords_2EqualPass()
         {
             // Arrange
-            List<string> passwordStrings = new List<string>
+            List<PasswordDataString> passwordDataStrings = new List<PasswordDataString>
             {
-                "a 1-5: abcdj" ,
-                "b 3-6: bhhkkbbjjjb"
+                new PasswordDataString
+                {
+                    Symbol = 'a',
+                    Min = 1,
+                    Max = 5,
+                    Password = "abcdj"
+                },
+                new PasswordDataString
+                {
+                    Symbol = 'b',
+                    Min = 2,
+                    Max = 7,
+                    Password = "bhhkkbbjjjb"
+                }
             };
             int expectedCount = 2;
 
             // Act
-            int actualCount = validator.ValidPasswordsCount(passwordStrings);
+            int actualCount = validator.ValidPasswordsCount(passwordDataStrings);
 
             // Assert
             Assert.That(actualCount, Is.EqualTo(expectedCount));
@@ -34,16 +46,34 @@ namespace CruxlabTestTask.Tests
         public void ValidPasswordsCountTest_InvalidPassword_0EqualPass()
         {
             // Arrange
-            List<string> passwordStrings = new List<string>
+            List<PasswordDataString> passwordDataStrings = new List<PasswordDataString>
             {
-                "f 12-15: asfgalTseiQrCuqXwo",
-                "e 111-122: asfgalTsezvhfvoeojeovGhUFeDhoekkviQrCuqXwo",
-                "j 2-4: asfalseiruqwo"
+                new PasswordDataString
+                {
+                    Symbol = 'f',
+                    Min = 12,
+                    Max = 15,
+                    Password = "asfgalTseiQrCuqXwo"
+                },
+                new PasswordDataString
+                {
+                    Symbol = 'e',
+                    Min = 111,
+                    Max = 122,
+                    Password = "asfgalTsezvhfvoeojeovGhUFeDhoekkviQrCuqXwo"
+                },
+                new PasswordDataString
+                {
+                    Symbol = 'j',
+                    Min = 2,
+                    Max = 4,
+                    Password = "asfalseiruqwo"
+                }
             };
             int expectedCount = 0;
 
             // Act
-            int actualCount = validator.ValidPasswordsCount(passwordStrings);
+            int actualCount = validator.ValidPasswordsCount(passwordDataStrings);
 
             // Assert
             Assert.That(actualCount, Is.EqualTo(expectedCount));

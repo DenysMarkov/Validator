@@ -13,7 +13,24 @@ namespace CruxlabTestTask.Tests
         }
 
         [Test]
-        public void LoadingFileWithMixedPasswordsTest_4validPasswords()
+        public void LoadingFileWithValidPasswordsTest_4validPasswords_4validPasswords()
+        {
+            // Arrange
+            string fileName = "Resources\\valid passwords.txt";
+            TxtReader txtReader = new TxtReader(fileName);
+            int expectedCount = 4;
+
+            // Act
+            List<string> passwordStrings = txtReader.Load();
+            var parcedStrings = Parser.ParseBatch(passwordStrings);
+            int actualCount = validator.ValidPasswordsCount(parcedStrings);
+
+            // Assert
+            Assert.That(actualCount, Is.EqualTo(expectedCount));
+        }
+
+        [Test]
+        public void LoadingFileWithMixedPasswordsTest_2validAnd1invalidPasswords_2validPasswords()
         {
             // Arrange
             string fileName = "Resources\\mixed valid and invalid passwords.txt";
@@ -22,14 +39,15 @@ namespace CruxlabTestTask.Tests
 
             // Act
             List<string> passwordStrings = txtReader.Load();
-            int actualCount = validator.ValidPasswordsCount(passwordStrings);
+            var parcedStrings = Parser.ParseBatch(passwordStrings);
+            int actualCount = validator.ValidPasswordsCount(parcedStrings);
 
             // Assert
             Assert.That(actualCount, Is.EqualTo(expectedCount));
         }
 
         [Test]
-        public void LoadingFileWithInvalidPasswordsTest_InvalidPassword()
+        public void LoadingFileWithInvalidPasswordsTest_InvalidPasswords_0validPasswords()
         {
             // Arrange
             string fileName = "Resources\\invalid passwords.txt";
@@ -38,7 +56,8 @@ namespace CruxlabTestTask.Tests
 
             // Act
             List<string> passwordStrings = txtReader.Load();
-            int actualCount = validator.ValidPasswordsCount(passwordStrings);
+            var parcedStrings = Parser.ParseBatch(passwordStrings);
+            int actualCount = validator.ValidPasswordsCount(parcedStrings);
 
             // Assert
             Assert.That(actualCount, Is.EqualTo(expectedCount));

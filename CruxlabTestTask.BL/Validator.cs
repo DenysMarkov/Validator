@@ -1,44 +1,42 @@
 ﻿namespace CruxlabTestTask.BL
 {
     /// <summary>
-    /// 
+    /// Validator. Main class.
     /// </summary>
     public class Validator
     {
         /// <summary>
-        /// 
+        /// Determines if the password is valid.
         /// </summary>
-        /// <param name="passwordString"></param>
-        /// <returns></returns>
-        private bool IsValid(string passwordString)
+        /// <param name="passwordString">Password data string.</param>
+        /// <returns>Result.</returns>
+        private bool IsValid(PasswordDataString passwordDataString)
         {
-            var passDataString = Parser.HardParse(passwordString);
-
             int count = 0;
 
-            foreach (var symbol in passDataString.Password)
+            foreach (var symbol in passwordDataString.Password)
             {
-                if (symbol.Equals(passDataString.Symbol))
+                if (symbol.Equals(passwordDataString.Symbol))
                 {
                     count++;
                 }
             }
 
-            return count >= passDataString.Min && count <= passDataString.Max;
+            return count >= passwordDataString.Min && count <= passwordDataString.Max;
         }
 
         /// <summary>
-        /// 
+        /// Counts how many passwords are valid in the list.
         /// </summary>
-        /// <param name="passwordStrings"></param>
-        /// <returns></returns>
-        public int ValidPasswordsCount(IEnumerable<string> passwordStrings)
+        /// <param name="passwordDataStrings">List of password data strings.</param>
+        /// <returns>Number of valid passwords.</returns>
+        public int ValidPasswordsCount(IEnumerable<PasswordDataString> passwordDataStrings)
         {
             int count = 0;
 
-            foreach (var passwordString in passwordStrings)
+            foreach (var passwordDataString in passwordDataStrings)
             {
-                if (IsValid(passwordString))
+                if (IsValid(passwordDataString))
                 {
                     count++;
                 }
