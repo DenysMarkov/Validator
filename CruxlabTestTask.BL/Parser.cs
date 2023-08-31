@@ -96,14 +96,7 @@
 
             foreach (string passwordString in passwordStrings)
             {
-                if (isHardParse)
-                {
-                    passwordDataString = HardParse(passwordString);
-                }
-                else
-                {
-                    passwordDataString = Parse(passwordString);
-                }
+                passwordDataString = isHardParse is true ? HardParse(passwordString) : Parse(passwordString);
                 
                 passwordDataStrings.Add(passwordDataString);
             }
