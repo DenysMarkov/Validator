@@ -1,4 +1,6 @@
-﻿namespace CruxlabTestTask.BL
+﻿using System.Linq;
+
+namespace CruxlabTestTask.BL
 {
     /// <summary>
     /// Validator. Main class.
@@ -12,15 +14,7 @@
         /// <returns>Result.</returns>
         private bool IsValid(PasswordDataString passwordDataString)
         {
-            int count = 0;
-
-            foreach (var symbol in passwordDataString.Password)
-            {
-                if (symbol.Equals(passwordDataString.Symbol))
-                {
-                    count++;
-                }
-            }
+            int count = passwordDataString.Password.Count(symbol => symbol.Equals(passwordDataString.Symbol));
 
             return count >= passwordDataString.Min && count <= passwordDataString.Max;
         }

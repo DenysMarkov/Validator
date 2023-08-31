@@ -5,8 +5,8 @@
     /// </summary>
     public class TxtReader
     {
-        private FileStream fileStream;
-        private StreamReader textReader;
+        private readonly FileStream fileStream;
+        private readonly StreamReader textReader;
 
         /// <summary>
         /// Constructor.

@@ -12,7 +12,7 @@
         /// <returns><see cref="PasswordDataString"/> object.</returns>
         public static PasswordDataString Parse(string passwordString)
         {
-            PasswordDataString passwordDataString = new PasswordDataString();
+            PasswordDataString passwordDataString = new();
 
             var splitedString = passwordString.Split(new char[] { '-', ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             passwordDataString.Symbol = splitedString[0].ToCharArray().First();
@@ -31,7 +31,7 @@
         /// <exception cref="ArgumentException"></exception>
         public static PasswordDataString HardParse(string passwordString)
         {
-            PasswordDataString passwordDataString = new PasswordDataString();
+            PasswordDataString passwordDataString = new();
 
             var indexWhiteSpace = passwordString.IndexOf(' ');
             var subString = passwordString.Substring(0, indexWhiteSpace);
@@ -91,7 +91,7 @@
         /// <returns>List of <see cref="PasswordDataString"/>.</returns>
         public static IEnumerable<PasswordDataString> ParseBatch(IEnumerable<string> passwordStrings, bool isHardParse = true)
         {
-            List<PasswordDataString> passwordDataStrings = new List<PasswordDataString>(passwordStrings.Count());
+            List<PasswordDataString> passwordDataStrings = new(passwordStrings.Count());
             PasswordDataString passwordDataString;
 
             foreach (string passwordString in passwordStrings)

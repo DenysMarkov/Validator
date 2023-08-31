@@ -16,7 +16,7 @@ namespace CruxlabTestTask.Tests
         public void ValidPasswordsCountTest_ValidPasswords_2EqualPass()
         {
             // Arrange
-            List<PasswordDataString> passwordDataStrings = new List<PasswordDataString>
+            List<PasswordDataString> passwordDataStrings = new()
             {
                 new PasswordDataString
                 {
@@ -46,7 +46,7 @@ namespace CruxlabTestTask.Tests
         public void ValidPasswordsCountTest_InvalidPassword_0EqualPass()
         {
             // Arrange
-            List<PasswordDataString> passwordDataStrings = new List<PasswordDataString>
+            List<PasswordDataString> passwordDataStrings = new()
             {
                 new PasswordDataString
                 {

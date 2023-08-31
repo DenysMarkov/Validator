@@ -17,7 +17,7 @@ namespace CruxlabTestTask.Tests
         {
             // Arrange
             string fileName = "Resources\\valid passwords.txt";
-            TxtReader txtReader = new TxtReader(fileName);
+            TxtReader txtReader = new(fileName);
             int expectedCount = 4;
 
             // Act
@@ -34,7 +34,7 @@ namespace CruxlabTestTask.Tests
         {
             // Arrange
             string fileName = "Resources\\mixed valid and invalid passwords.txt";
-            TxtReader txtReader = new TxtReader(fileName);
+            TxtReader txtReader = new(fileName);
             int expectedCount = 2;
 
             // Act
@@ -51,7 +51,7 @@ namespace CruxlabTestTask.Tests
         {
             // Arrange
             string fileName = "Resources\\invalid passwords.txt";
-            TxtReader txtReader = new TxtReader(fileName);
+            TxtReader txtReader = new(fileName);
             int expectedCount = 0;
 
             // Act
