@@ -1,4 +1,4 @@
-﻿namespace CruxlabTestTask.BL
+﻿namespace CruxlabTestTask.BL.Models
 {
     /// <summary>
     /// Helper class. Represents a single line with a password requirement and a password in a text file.

@@ -1,4 +1,6 @@
-﻿namespace CruxlabTestTask.BL
+﻿using CruxlabTestTask.BL.Models;
+
+namespace CruxlabTestTask.BL
 {
     /// <summary>
     /// Class for parsing strings with passwords of text files.
@@ -34,6 +36,11 @@
             PasswordDataString passwordDataString = new();
 
             var indexWhiteSpace = passwordString.IndexOf(' ');
+            if (indexWhiteSpace == -1)
+            {
+                throw new ArgumentException("Invalid string in file! Unable to determine symbol.", nameof(indexWhiteSpace));
+            }
+
             var subString = passwordString.Substring(0, indexWhiteSpace);
             if (!char.TryParse(subString, out char symbol))
             {
@@ -45,6 +52,11 @@
             }
 
             var indexHyphen = passwordString.IndexOf('-');
+            if (indexHyphen == -1)
+            {
+                throw new ArgumentException("Invalid string in file! Unable to determine Min value.", nameof(indexHyphen));
+            }
+
             subString = passwordString.Substring(indexWhiteSpace + 1, indexHyphen - indexWhiteSpace - 1);
             if (!uint.TryParse(subString, out uint number1))
             {
@@ -56,6 +68,11 @@
             }
 
             var indexColon = passwordString.IndexOf(':');
+            if (indexColon == -1)
+            {
+                throw new ArgumentException("Invalid string in file! Unable to determine Max value.", nameof(indexColon));
+            }
+
             subString = passwordString.Substring(indexHyphen + 1, indexColon - indexHyphen - 1);
             if (!uint.TryParse(subString, out uint number2))
             {
@@ -70,10 +87,16 @@
                 passwordDataString.Max = number2;
             }
 
-            subString = passwordString.Substring(indexColon + 2);
+            var indexStartPassword = passwordString.Length <= indexColon + 2 ? -1 : indexColon + 2;
+            if (indexStartPassword == -1)
+            {
+                throw new ArgumentException("Invalid string in file! Password is empty.", nameof(indexStartPassword));
+            }
+
+            subString = passwordString.Substring(indexStartPassword);
             if (string.IsNullOrWhiteSpace(subString))
             {
-                throw new ArgumentException("Invalid string in file! Password is null.", nameof(subString));
+                throw new ArgumentException("Invalid string in file! Password is empty.", nameof(subString));
             }
             else
             {

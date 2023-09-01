@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\invalid password strings.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\invalid passwords.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -1,4 +1,5 @@
 using CruxlabTestTask.BL;
+using CruxlabTestTask.BL.Models;
 
 namespace CruxlabTestTask.Tests
 {

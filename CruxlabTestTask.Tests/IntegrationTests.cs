@@ -22,8 +22,8 @@ namespace CruxlabTestTask.Tests
 
             // Act
             List<string> passwordStrings = txtReader.Load();
-            var parcedStrings = Parser.ParseBatch(passwordStrings);
-            int actualCount = validator.ValidPasswordsCount(parcedStrings);
+            var parsedStrings = Parser.ParseBatch(passwordStrings);
+            int actualCount = validator.ValidPasswordsCount(parsedStrings);
 
             // Assert
             Assert.That(actualCount, Is.EqualTo(expectedCount));
@@ -39,8 +39,8 @@ namespace CruxlabTestTask.Tests
 
             // Act
             List<string> passwordStrings = txtReader.Load();
-            var parcedStrings = Parser.ParseBatch(passwordStrings);
-            int actualCount = validator.ValidPasswordsCount(parcedStrings);
+            var parsedStrings = Parser.ParseBatch(passwordStrings);
+            int actualCount = validator.ValidPasswordsCount(parsedStrings);
 
             // Assert
             Assert.That(actualCount, Is.EqualTo(expectedCount));
@@ -56,11 +56,23 @@ namespace CruxlabTestTask.Tests
 
             // Act
             List<string> passwordStrings = txtReader.Load();
-            var parcedStrings = Parser.ParseBatch(passwordStrings);
-            int actualCount = validator.ValidPasswordsCount(parcedStrings);
+            var parsedStrings = Parser.ParseBatch(passwordStrings);
+            int actualCount = validator.ValidPasswordsCount(parsedStrings);
 
             // Assert
             Assert.That(actualCount, Is.EqualTo(expectedCount));
+        }
+
+        [Test]
+        public void LoadingFileWithInvalidPasswordStringsTest_InvalidPasswordString_ArgumentException()
+        {
+            // Arrange
+            string fileName = "Resources\\invalid password strings.txt";
+            TxtReader txtReader = new(fileName);
+            List<string> passwordStrings = txtReader.Load();
+
+            // Act $ Assert
+            Assert.Throws<ArgumentException>(() => Parser.ParseBatch(passwordStrings));
         }
     }
 }

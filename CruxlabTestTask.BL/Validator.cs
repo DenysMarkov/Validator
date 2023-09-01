@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using CruxlabTestTask.BL.Models;
 
 namespace CruxlabTestTask.BL
 {
@@ -26,15 +27,7 @@ namespace CruxlabTestTask.BL
         /// <returns>Number of valid passwords.</returns>
         public int ValidPasswordsCount(IEnumerable<PasswordDataString> passwordDataStrings)
         {
-            int count = 0;
-
-            foreach (var passwordDataString in passwordDataStrings)
-            {
-                if (IsValid(passwordDataString))
-                {
-                    count++;
-                }
-            }
+            int count = passwordDataStrings.Count(passwordDataString => IsValid(passwordDataString));
 
             return count;
         }
