@@ -5,11 +5,7 @@ namespace CruxlabTestTask.Tests
 {
     public class ParserTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
+        #region Test Cases
         [TestCase(" t 1-5: ttxftngccstYtStt2")]
         [TestCase(" 1-5: ttxftngccstYtStt2")]
         [TestCase("t -5: ttxftngccstYtStt2")]
@@ -19,11 +15,9 @@ namespace CruxlabTestTask.Tests
         [TestCase("t 5-1: ttxftngccstYtStt2")]
         [TestCase("t 1-5: ")]
         [TestCase("t 1-5:")]
+        #endregion
         public void HardParseTest_InvalidPasswordString_ArgumentException(string passwordString)
         {
-            // Arrange
-            string invalidPasswordString = passwordString;
-
             // Act $ Assert
             Assert.Throws<ArgumentException>(() => Parser.HardParse(passwordString));
         }
